@@ -1,0 +1,1 @@
+export type Status = 'critical' | 'serious' | 'caution' | 'normal' | 'standby' | 'off';
