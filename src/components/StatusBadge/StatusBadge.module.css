@@ -1,0 +1,36 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px 3px 8px;
+  border-radius: var(--radius-pill);
+  font: var(--text-data-status);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.iconOnly {
+  padding: 4px;
+}
+
+.icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* Filled: status colour with black text */
+.filled {
+  color: var(--color-black);
+}
+.filled.critical { background: var(--status-critical); }
+.filled.serious { background: var(--status-serious); }
+.filled.caution { background: var(--status-caution); }
+
+/* Outlined: grey by default, status colour for problems */
+.outlined {
+  border: 1px solid var(--color-text-muted);
+}
+.outlined.critical { border-color: var(--status-critical); color: var(--status-critical); }
+.outlined.serious { border-color: var(--status-serious); color: var(--status-serious); }
+.outlined.caution { border-color: var(--status-caution); color: var(--status-caution); }
