@@ -1,0 +1,63 @@
+:root {
+  /* Dark theme (dashboard) */
+  --color-bg: #121316;           
+  --color-panel: #1c1d22;         
+  --color-panel-raised: #26272e; 
+  --color-line: #383a44;          
+  --color-line-strong: #4d4f59;   
+  --color-text: #f2f2f4;
+  --color-text-muted: #a9abb6;   
+
+  /* Inholland */
+  --color-magenta: #e3027f;       
+  --color-magenta-hover: #b30062;
+  --color-black: #000000;        
+  --color-white: #ffffff;
+
+  /* Status (Astro UXDS) */
+  --status-critical: #ff3838;
+  --status-serious: #ffb302;
+  --status-caution: #fce83a;
+  --status-normal: #56f000;
+  --status-standby: #2dccff;
+  --status-off: #a4abb6;
+
+  /* Charts and range bars */
+  --chart-safe-range: #1e2a26;
+  --chart-pass-band: #3a3c46;
+  --chart-not-received: #16171b;
+  --range-track: #2e3038;
+  --range-safe-band: #7a7d8a;
+  --range-near-limit: #565966;
+
+  /* Typography: weight size/line-height family */
+  --font-family: 'Avenir Next LT Pro', Arial, sans-serif;
+  --text-page-title: 600 1.75rem/2.25rem var(--font-family);      /* 28/36 */
+  --text-h4: 600 1.25rem/1.875rem var(--font-family);             /* 20/30, card titles */
+  --text-body: 400 1rem/1.75rem var(--font-family);               /* 16/28 */
+  --text-body-strong: 600 1rem/1.5rem var(--font-family);         /* 16/24 */
+  --text-label: 400 0.9375rem/1.375rem var(--font-family);        /* 15/22, value names */
+  --text-label-strong: 600 0.9375rem/1.375rem var(--font-family); /* 15/22, table headers */
+  --text-small: 400 0.875rem/1.25rem var(--font-family);          /* 14/20, units */
+  --text-caption: 400 0.75rem/1rem var(--font-family);            /* 12/16 */
+  --text-overline: 600 0.75rem/1rem var(--font-family);           /* 12/16 */
+  --text-data-value: 700 1.375rem/1.75rem var(--font-family);     /* 22/28, measured values */
+  --text-data-status: 600 0.875rem/1.125rem var(--font-family);   /* 14/18, status pills */
+
+  /* Spacing (steps of 4px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+
+  /* Shapes: square corners, only pills are rounded */
+  --radius-pill: 999px;
+  --border: 1px solid var(--color-line);
+
+  /* Layout */
+  --topbar-height: 76px;
+  --sidebar-width: 232px;
+}
