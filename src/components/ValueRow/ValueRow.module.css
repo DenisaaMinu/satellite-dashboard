@@ -31,5 +31,12 @@
 .stale { color: var(--status-off); }
 
 .staleRow {
-  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
+  margin-top: var(--space-2);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.rangeRow {
+  margin-top: var(--space-2);
 }

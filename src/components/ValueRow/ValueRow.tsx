@@ -1,7 +1,8 @@
 import styles from "./ValueRow.module.css";
 
-import type { Status } from "../../types/telemetry";
+import type { Status, Limits } from "../../types/telemetry";
 import { StatusBadge } from "../StatusBadge/StatusBadge";
+import { RangeBar } from "../RangeBar/RangeBar";
 
 // only these statuses colour a row's value
 type RowStatus = Extract<Status, 'caution' | 'serious' | 'critical'>;
@@ -12,11 +13,11 @@ interface ValueRowProps {
     pill?: Status;
     unit?: string;
     status?: RowStatus;
-    range?: { min: number; max: number };
+    range?: Limits & { safe: Limits; caution: Limits };
     staleAge?: string;
 }
 
-export function ValueRow({ label, value, unit, status, pill, staleAge }: ValueRowProps) {
+export function ValueRow({ label, value, unit, status, pill, staleAge, range }: ValueRowProps) {
     const classNames = [styles.value, status && styles[status], staleAge && styles.stale]
         .filter(Boolean)
         .join(' ');
@@ -35,11 +36,16 @@ export function ValueRow({ label, value, unit, status, pill, staleAge }: ValueRo
                     </>
                 )}
             </div>
-                {staleAge && (
-                    <div className={styles.staleRow}>
-                        <StatusBadge status="off" label={`Stale · ${staleAge}`} />
-                    </div>
-                )}
+            {staleAge && (
+                <div className={styles.staleRow}>
+                    <StatusBadge status="off" label={`Stale · ${staleAge}`} />
+                </div>
+            )}
+            {range && typeof value === 'number' && (
+                <div className={styles.rangeRow}>
+                    <RangeBar value={value} min={range.min} max={range.max} safe={range.safe} caution={range.caution} />
+                </div>
+            )}
         </div>
     );
 }
