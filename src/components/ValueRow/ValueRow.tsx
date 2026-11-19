@@ -1,19 +1,16 @@
 import styles from "./ValueRow.module.css";
 
-import type { Status, Limits } from "../../types/telemetry";
+import type { Status, ProblemStatus, Limits } from "../../types/telemetry";
 import { StatusBadge } from "../StatusBadge/StatusBadge";
 import { RangeBar } from "../RangeBar/RangeBar";
 import offIcon from "../../assets/icons/off.svg";
-
-// only these statuses colour a row's value
-type RowStatus = Extract<Status, 'caution' | 'serious' | 'critical'>;
 
 interface ValueRowProps {
     label: string;
     value?: string | number;
     pill?: Status;
     unit?: string;
-    status?: RowStatus;
+    status?: ProblemStatus;
     range?: Limits & { safe: Limits; caution: Limits };
     staleAge?: string;
 }
