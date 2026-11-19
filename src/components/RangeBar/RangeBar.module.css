@@ -1,0 +1,32 @@
+.track {
+  position: relative;   
+  height: var(--range-bar-height);
+  background: var(--range-track);
+}
+
+.marker {
+  position: absolute;
+  transform: translateX(-50%);
+  top: calc((var(--range-bar-height) - var(--range-marker-height)) / 2);
+  width: var(--range-marker-width);
+  height: var(--range-marker-height);
+  background: var(--color-text);
+}
+
+.markerStale {
+  background: var(--color-text-muted);
+}
+
+.safe {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--range-safe-band);
+}
+
+.cautionZone {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: var(--range-near-limit);
+}
