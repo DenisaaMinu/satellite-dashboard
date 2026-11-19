@@ -1,0 +1,21 @@
+.card {
+  background: var(--color-panel);
+  border: var(--border);
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.caution { border-color: var(--status-caution); }
+.serious { border-color: var(--status-serious); }
+.critical { border-color: var(--status-critical); }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--space-2);
+}
+
+.title {
+  margin: 0;
+  font: var(--text-h4);
+}
