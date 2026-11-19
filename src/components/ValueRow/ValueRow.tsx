@@ -3,6 +3,7 @@ import styles from "./ValueRow.module.css";
 import type { Status, Limits } from "../../types/telemetry";
 import { StatusBadge } from "../StatusBadge/StatusBadge";
 import { RangeBar } from "../RangeBar/RangeBar";
+import offIcon from "../../assets/icons/off.svg";
 
 // only these statuses colour a row's value
 type RowStatus = Extract<Status, 'caution' | 'serious' | 'critical'>;
@@ -36,14 +37,15 @@ export function ValueRow({ label, value, unit, status, pill, staleAge, range }: 
                     </>
                 )}
             </div>
-            {staleAge && (
-                <div className={styles.staleRow}>
-                    <StatusBadge status="off" label={`Stale · ${staleAge}`} />
-                </div>
-            )}
             {range && typeof value === 'number' && (
                 <div className={styles.rangeRow}>
-                    <RangeBar value={value} min={range.min} max={range.max} safe={range.safe} caution={range.caution} />
+                    <RangeBar value={value} min={range.min} max={range.max} safe={range.safe} caution={range.caution} stale={Boolean(staleAge)} />
+                </div>
+            )}
+            {staleAge && (
+                <div className={styles.staleRow}>
+                    <img className={styles.staleIcon} src={offIcon} alt="" />
+                    Stale · {staleAge}
                 </div>
             )}
         </div>

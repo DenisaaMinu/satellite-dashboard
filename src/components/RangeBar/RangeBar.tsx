@@ -7,9 +7,10 @@ interface RangeBarProps {
     max: number;
     safe: Limits;
     caution: Limits;
+    stale?: boolean;
 }
 
-export function RangeBar({ value, min, max, safe, caution }: RangeBarProps) {
+export function RangeBar({ value, min, max, safe, caution, stale }: RangeBarProps) {
     function toPercent(v: number) {
         return (v - min) / (max - min) * 100;
     }
@@ -29,12 +30,18 @@ export function RangeBar({ value, min, max, safe, caution }: RangeBarProps) {
     const highLeft = toPercent(caution.max);
     const highRight = toPercent(safe.max);
 
+    // old data: grey marker, so it doesn't look like a live position
+    const markerClassNames = [styles.marker, stale && styles.markerStale]
+        .filter(Boolean)
+        .join(' ');
+
     return (
-        <div className={styles.track}>
+        // aria-hidden: the bar is only a picture; the value is already in the text above it
+        <div className={styles.track} aria-hidden="true">
             <div className={styles.safe} style={{ left: `${safeLeft}%`, width: `${safeRight - safeLeft}%` }} />
             <div className={styles.cautionZone} style={{ left: `${lowLeft}%`, width: `${lowRight - lowLeft}%` }} />
             <div className={styles.cautionZone} style={{ left: `${highLeft}%`, width: `${highRight - highLeft}%` }} />
-            <div className={styles.marker} style={{ left: `${clamped}%` }} />
+            <div className={markerClassNames} style={{ left: `${clamped}%` }} />
         </div>
     );
 }

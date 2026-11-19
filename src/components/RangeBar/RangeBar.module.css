@@ -1,16 +1,20 @@
 .track {
   position: relative;   
-  height: 6px;
+  height: var(--range-bar-height);
   background: var(--range-track);
 }
 
 .marker {
-  position: absolute;     
-  transform: translateX(-50%);        
-  top: -4px;              
-  width: 3px;
-  height: 14px;
+  position: absolute;
+  transform: translateX(-50%);
+  top: calc((var(--range-bar-height) - var(--range-marker-height)) / 2);
+  width: var(--range-marker-width);
+  height: var(--range-marker-height);
   background: var(--color-text);
+}
+
+.markerStale {
+  background: var(--color-text-muted);
 }
 
 .safe {

@@ -30,6 +30,11 @@
   --range-safe-band: #7a7d8a;
   --range-near-limit: #565966;
 
+  /* Range bar sizes (from the Figma Range bar component) */
+  --range-bar-height: 6px;
+  --range-marker-width: 3px;
+  --range-marker-height: 14px;
+
   /* Typography: weight size/line-height family */
   --font-family: 'Avenir Next LT Pro', Arial, sans-serif;
   --text-page-title: 600 1.75rem/2.25rem var(--font-family);      /* 28/36 */

@@ -29,7 +29,7 @@ function App() {
         />
         <ValueRow
           label="Payload temperature"
-          value={38}
+          value={45}
           unit="°C"
           status="critical"
           staleAge="3 h"
