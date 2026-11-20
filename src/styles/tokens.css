@@ -65,4 +65,5 @@
   /* Layout */
   --topbar-height: 76px;
   --sidebar-width: 232px;
+  --tab-indicator-width: 3px;   /* magenta bar on the selected tab */
 }

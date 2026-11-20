@@ -1,0 +1,30 @@
+.list {
+  list-style: none;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-3);
+}
+
+.tab {
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+
+  font: var(--text-body);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-3);
+  /* invisible bar, so the text doesn't shift when the tab becomes active */
+  border-left: var(--tab-indicator-width) solid transparent;
+}
+
+/* selected tab: raised background, white text, magenta bar */
+.active {
+  background: var(--color-panel-raised);
+  color: var(--color-text);
+  border-left-color: var(--color-magenta);
+}
