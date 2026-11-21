@@ -15,13 +15,13 @@ const infoItems = [
 export function TopBar() {
     return (
         <div className={styles.topbar}>
-            <div className={styles.brand}>
+            <div className={styles.logoArea}>
                 <img src={logo} alt="Inholland" className={styles.logo} />
-                <div className={styles.divider} />
-                <div className={styles.brandText}>
-                    <span className={styles.name}>InhollandSat-1</span>
-                    <span className={styles.subtitle}>Operator dashboard</span>
-                </div>
+            </div>
+
+            <div className={styles.brandText}>
+                <span className={styles.name}>InhollandSat-1</span>
+                <span className={styles.subtitle}>Operator dashboard</span>
             </div>
 
             <div className={styles.info}>
