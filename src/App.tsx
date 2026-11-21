@@ -1,12 +1,12 @@
 import { ValueRow } from "./components/ValueRow/ValueRow";
 import { ValueCard } from "./components/ValueCard/ValueCard";
+import { AppShell } from "./components/AppShell/AppShell";
 
 function App() {
   return (
-    <main>
-      <h1>Satellite Dashboard</h1>
+    <AppShell>
+      {/* Example data, not real satellite values */}
       <div style={{ width: 373 }}>
-        {/* Example data, not real satellite values */}
         <ValueCard title="Power" status="critical">
           <ValueRow
             label="Battery 2 voltage"
@@ -43,7 +43,7 @@ function App() {
           />
         </ValueCard>
       </div>
-    </main >
+    </AppShell>
   );
 }
 

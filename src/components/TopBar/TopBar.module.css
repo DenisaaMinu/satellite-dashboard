@@ -1,0 +1,79 @@
+/* one row, everything vertically centred in the 76px header */
+.topbar {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: 0 var(--space-5);
+}
+
+/* logo | divider | text, in one row */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.logo {
+  height: var(--logo-height);
+  display: block;
+}
+
+/* thin vertical line, same height as the logo */
+.divider {
+  width: 1px;
+  height: var(--logo-height);
+  background: var(--color-line);
+}
+
+/* name on top, subtitle under it */
+.brandText {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font: var(--text-body-strong);
+  color: var(--color-text);
+}
+
+.subtitle {
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+/* the 4 info items next to each other */
+.info {
+  display: flex;
+  gap: var(--space-6);
+}
+
+/* label on top, value under it */
+.infoItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.infoLabel {
+  font: var(--text-overline);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.infoValue {
+  font: var(--text-body-strong);
+  color: var(--color-text);
+}
+
+/* margin-left: auto pushes health to the far right */
+.health {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.healthLabel {
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}

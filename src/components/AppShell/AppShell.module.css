@@ -1,0 +1,23 @@
+.shell {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--topbar-height) 1fr;
+  min-height: 100vh;
+}
+
+/* full width: from the first column line to the last */
+.topbar {
+  grid-column: 1 / -1;
+  background: var(--color-panel);
+  border-bottom: var(--border);
+}
+
+.sidebar {
+  background: var(--color-panel);
+  border-right: var(--border);
+}
+
+.content {
+  background: var(--color-bg);
+  padding: var(--space-5);
+}
