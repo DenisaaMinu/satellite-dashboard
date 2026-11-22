@@ -1,0 +1,124 @@
+.status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-panel);
+  border: var(--border);
+  font: var(--text-small);
+  color: var(--color-text);
+}
+
+/* ---------- choices ---------- */
+
+.group {
+  margin: 0;
+  padding: var(--space-4);
+  background: var(--color-panel);
+  border: var(--border);
+}
+
+.legend {
+  padding: 0 var(--space-2);
+  font: var(--text-h4);
+  color: var(--color-text);
+}
+
+.options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+}
+
+/* the whole box is clickable, the radio button sits at the top left */
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-panel-raised);
+  border: var(--border);
+  cursor: pointer;
+}
+
+/* :has() = "the box that contains a checked radio": that one gets a lighter border */
+.option:has(input:checked) {
+  border-color: var(--color-text);
+}
+
+.option input {
+  margin: var(--space-1) 0 0;
+  accent-color: var(--color-text);
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.optionTitle {
+  font: var(--text-label-strong);
+  color: var(--color-text);
+}
+
+.optionDescription {
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+/* ---------- buttons ---------- */
+
+.buttons {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.primary,
+.secondary {
+  padding: var(--space-2) var(--space-5);
+  font: var(--text-body-strong);
+  cursor: pointer;
+  border: var(--border);
+}
+
+/* white button: the main action. Not magenta (only for the logo and the selected tab) */
+.primary {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border-color: var(--color-text);
+}
+
+.secondary {
+  background: none;
+  color: var(--color-text);
+}
+
+.secondary:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+.primary:focus-visible,
+.secondary:focus-visible,
+.option:has(input:focus-visible),
+.link:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.watch {
+  margin: 0;
+  font: var(--text-body);
+  color: var(--color-text-muted);
+}
+
+.link {
+  color: var(--color-text);
+}

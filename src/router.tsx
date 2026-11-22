@@ -11,6 +11,7 @@ import { CommunicationsPage } from "./features/communications/CommunicationsPage
 import { PayloadPage } from "./features/payload/PayloadPage";
 import { OrbitPage } from "./features/orbit/OrbitPage";
 import { PassHistoryPage } from "./features/pass-history/PassHistoryPage";
+import { DemosPage } from "./features/demos/DemosPage";
 
 // Which page each tab shows. Record<TabId, ...> means TypeScript gives an error
 // if a tab in tabs.ts has no page here.
@@ -39,6 +40,9 @@ export function AppRoutes() {
                 {tabs.map((tab) => (
                     <Route key={tab.id} path={tab.path} element={pages[tab.id]} />
                 ))}
+
+                {/* Hidden page (not in the sidebar): the demo simulator */}
+                <Route path="/demos" element={<DemosPage />} />
 
                 {/* Unknown URL: go back to the Overview instead of showing an empty page */}
                 <Route path="*" element={<Navigate to={homePath} replace />} />

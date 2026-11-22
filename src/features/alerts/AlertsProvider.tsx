@@ -1,11 +1,18 @@
-import { useCallback, useEffect, useState, type ReactNode } from "react";
-import { acknowledgeAlert, getAlerts, undoAcknowledge as undoAcknowledgeAlert } from "../../api/telemetry";
+import { useCallback, useEffect, useState, useSyncExternalStore, type ReactNode } from "react";
+import {
+    acknowledgeAlert,
+    getAlerts,
+    getDataVersion,
+    onDataChange,
+    undoAcknowledge as undoAcknowledgeAlert,
+} from "../../api/telemetry";
 import type { Alert } from "../../types/alerts";
 import { AlertsContext } from "./alertsContext";
 
-// Loads the alerts once and gives them to everything inside it.
+// Loads the alerts, and again whenever new data arrives, and gives them to everything inside it.
 export function AlertsProvider({ children }: { children: ReactNode }) {
     const [alerts, setAlerts] = useState<Alert[]>();
+    const dataVersion = useSyncExternalStore(onDataChange, getDataVersion);
 
     useEffect(() => {
         let stillOpen = true;
@@ -15,7 +22,7 @@ export function AlertsProvider({ children }: { children: ReactNode }) {
         return () => {
             stillOpen = false;
         };
-    }, []);
+    }, [dataVersion]);
 
     // Tell the api (later: the backend), then load the list again so everyone sees the change.
     // useCallback: the same function every render, so components using it don't re-render for nothing.
