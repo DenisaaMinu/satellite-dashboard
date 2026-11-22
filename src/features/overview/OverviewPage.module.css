@@ -1,0 +1,6 @@
+/* 3 cards per row, same layout as the info tiles above them */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
