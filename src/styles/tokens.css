@@ -42,6 +42,10 @@
   --map-height: 320px;            /* ground track map on the Orbit tab */
   --map-side-width: 224px;        /* "Last known position" next to the map */
 
+  /* Alerts panel (opens from the health badge in the top bar) */
+  --alerts-panel-width: 880px;
+  --alerts-panel-max-height: 70vh;
+
   /* Range bar sizes (from the Figma Range bar component) */
   --range-bar-height: 6px;
   --range-marker-width: 3px;

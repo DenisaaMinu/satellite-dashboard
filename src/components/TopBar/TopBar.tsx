@@ -1,7 +1,7 @@
 import styles from "./TopBar.module.css";
 import logo from "../../assets/inholland-logo.svg";
 
-import { StatusBadge } from "../StatusBadge/StatusBadge";
+import { HealthMenu } from "../../features/alerts/HealthMenu";
 import { getCommunications, getPassSchedule } from "../../api/telemetry";
 import { useApi } from "../../api/useApi";
 import { useNow } from "../../api/useNow";
@@ -58,7 +58,7 @@ export function TopBar() {
 
             <div className={styles.health}>
                 <span className={styles.healthLabel}>Overall health</span>
-                <StatusBadge status="critical" label="Critical · 2 alerts" />
+                <HealthMenu />
             </div>
         </div>
     );

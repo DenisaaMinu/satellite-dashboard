@@ -1,0 +1,48 @@
+/* position: relative so the panel can be placed right under the badge */
+.root {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.chevron {
+  font: var(--text-small);
+}
+
+.acknowledged {
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+/* drops down from the top bar, aligned to the right edge */
+.panel {
+  position: absolute;
+  top: calc(100% + var(--space-4));
+  right: 0;
+  z-index: 10;
+  width: var(--alerts-panel-width);
+  max-width: calc(100vw - var(--space-6));
+  max-height: var(--alerts-panel-max-height);
+  overflow-y: auto;
+  padding: var(--space-4);
+  background: var(--color-panel);
+  border: var(--border);
+  box-shadow: 0 var(--space-2) var(--space-5) var(--color-black);
+}
