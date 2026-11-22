@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { createBrowserRouter, Navigate } from "react-router";
+import { Navigate, Route, Routes } from "react-router";
 
 import { AppShell } from "./components/AppShell/AppShell";
 import { tabs, homePath, type TabId } from "./navigation/tabs";
@@ -25,17 +25,24 @@ const pages: Record<TabId, ReactNode> = {
     "pass-history": <PassHistoryPage />,
 };
 
-export const router = createBrowserRouter([
-    {
-        // AppShell (top bar + sidebar) stays on screen; the tab page renders inside its <Outlet />
-        path: "/",
-        element: <AppShell />,
-        children: [
-            // "/" opens the Overview
-            { index: true, element: <Navigate to={homePath} replace /> },
-            ...tabs.map((tab) => ({ path: tab.path, element: pages[tab.id] })),
-            // Unknown URL: go back to the Overview instead of showing an empty page
-            { path: "*", element: <Navigate to={homePath} replace /> },
-        ],
-    },
-]);
+// All routes, written as JSX (like the W3Schools React Router tutorial).
+// Must be inside <BrowserRouter> (see App.tsx).
+export function AppRoutes() {
+    return (
+        <Routes>
+            {/* Nested routes: AppShell (top bar + sidebar) stays on screen,
+                the tab page renders inside its <Outlet /> */}
+            <Route path="/" element={<AppShell />}>
+                {/* "/" opens the Overview */}
+                <Route index element={<Navigate to={homePath} replace />} />
+
+                {tabs.map((tab) => (
+                    <Route key={tab.id} path={tab.path} element={pages[tab.id]} />
+                ))}
+
+                {/* Unknown URL: go back to the Overview instead of showing an empty page */}
+                <Route path="*" element={<Navigate to={homePath} replace />} />
+            </Route>
+        </Routes>
+    );
+}
