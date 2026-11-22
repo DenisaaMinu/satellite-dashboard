@@ -1,0 +1,121 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font: var(--text-body-strong);
+}
+
+.rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* one alert: coloured bar on the left, then 4 columns: badge | what + why | when | actions */
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-panel-raised);
+  border-left: var(--tab-indicator-width) solid var(--color-line-strong);
+}
+
+.critical { border-left-color: var(--status-critical); }
+.serious { border-left-color: var(--status-serious); }
+.caution { border-left-color: var(--status-caution); }
+.resolved { border-left-color: var(--color-line-strong); }
+
+.text {
+  display: flex;
+  flex-direction: column;
+}
+
+.what {
+  font: var(--text-label-strong);
+  color: var(--color-text);
+}
+
+.why {
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.when {
+  font: var(--text-small);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+/* link and button next to each other, right-aligned */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  white-space: nowrap;
+}
+
+.link {
+  font: var(--text-small);
+  color: var(--color-text);
+}
+
+.button {
+  border: var(--border);
+  background: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-3);
+  font: var(--text-small);
+  color: var(--color-text);
+}
+
+.button:hover {
+  background: var(--color-panel);
+}
+
+.link:focus-visible,
+.button:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* ---------- groups ---------- */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.groupTitle {
+  margin: 0;
+  font: var(--text-overline);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* <summary> is clickable */
+summary.groupTitle {
+  cursor: pointer;
+  margin-bottom: var(--space-2);
+}
+
+summary.groupTitle:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.empty {
+  margin: 0;
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}

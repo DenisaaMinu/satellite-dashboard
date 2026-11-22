@@ -1,0 +1,50 @@
+.legend {
+  list-style: none;
+  margin: var(--space-4) 0 var(--space-2);
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  font: var(--text-small);
+  color: var(--color-text-muted);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* blocks: 16 x 12 */
+.swatch {
+  display: block;
+  width: var(--space-4);
+  height: var(--space-3);
+}
+
+.bar-latest { background: var(--chart-bar-latest); }
+.bar-earlier { background: var(--chart-bar); }
+.bar-partial { border: 1px dashed var(--chart-bar); }
+.safe-range { background: var(--chart-safe-range); }
+.pass { background: var(--chart-pass-band); }
+
+/* lines: a block with only a top border, moved to the middle */
+.line,
+.limit-critical,
+.limit-caution,
+.limit-neutral {
+  width: var(--space-5);
+  height: 0;
+}
+
+.line { border-top: 2px solid var(--chart-line); }
+.limit-critical { border-top: 1px dashed var(--status-critical); }
+.limit-caution { border-top: 1px dashed var(--status-caution); }
+.limit-neutral { border-top: 1px dashed var(--color-text-muted); }
+
+.dot {
+  width: var(--chart-dot-size);
+  height: var(--chart-dot-size);
+  border-radius: var(--radius-pill);
+  background: var(--chart-line);
+}

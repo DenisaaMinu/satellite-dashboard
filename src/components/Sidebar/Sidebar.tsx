@@ -1,33 +1,23 @@
+import { NavLink } from "react-router";
+import { tabs } from "../../navigation/tabs";
+
 import styles from "./Sidebar.module.css";
 
-interface SidebarProps {
-    active: string;
-}
-
-const tabs = [
-    { id: "overview", label: "Overview" },
-    { id: "power", label: "Power" },
-    { id: "thermal", label: "Thermal" },
-    { id: "attitude", label: "Attitude control" },
-    { id: "communications", label: "Communications" },
-    { id: "payload", label: "Payload" },
-    { id: "orbit", label: "Orbit" },
-    { id: "history", label: "Pass history" },
-];
-
-export function Sidebar({ active }: SidebarProps) {
+// NavLink is a link that knows if its page is open: it gives us isActive
+// and sets aria-current="page" by itself, so screen readers hear which tab is selected.
+export function Sidebar() {
     return (
         <ul className={styles.list}>
             {tabs.map((tab) => (
                 <li key={tab.id}>
-                    <button
-                        className={[styles.tab, tab.id === active && styles.active]
-                            .filter(Boolean)
-                            .join(" ")}
-                        aria-current={tab.id === active ? "page" : undefined}
+                    <NavLink
+                        to={tab.path}
+                        className={({ isActive }) =>
+                            [styles.tab, isActive && styles.active].filter(Boolean).join(" ")
+                        }
                     >
                         {tab.label}
-                    </button>
+                    </NavLink>
                 </li>
             ))}
         </ul>

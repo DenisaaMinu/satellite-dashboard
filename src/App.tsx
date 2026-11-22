@@ -1,50 +1,14 @@
-import { ValueRow } from "./components/ValueRow/ValueRow";
-import { ValueCard } from "./components/ValueCard/ValueCard";
-import { AppShell } from "./components/AppShell/AppShell";
+import { BrowserRouter } from "react-router";
+import { AppRoutes } from "./router";
 
+// BrowserRouter keeps the URL in the address bar in sync with the page.
+// Everything that uses routing (NavLink, Outlet, Routes) must be inside it.
 function App() {
-  return (
-    <AppShell>
-      {/* Example data, not real satellite values */}
-      <div style={{ width: 373 }}>
-        <ValueCard title="Power" status="critical">
-          <ValueRow
-            label="Battery 2 voltage"
-            value={14.6}
-            unit="V"
-            range={{ min: 11.5, max: 17, safe: { min: 12, max: 16 }, caution: { min: 12.4, max: 15.6 } }}
-          />
-
-          <ValueRow
-            label="Payload temperature"
-            value={38}
-            unit="°C"
-            status="caution"
-            range={{ min: -20, max: 60, safe: { min: 0, max: 40 }, caution: { min: 5, max: 35 } }}
-          />
-
-          <ValueRow label="S-band radio" pill="standby" />
-
-          <ValueRow
-            label="Battery 2 voltage"
-            value={14.6}
-            unit="V"
-            staleAge="3 h"
-            range={{ min: 11.5, max: 17, safe: { min: 12, max: 16 }, caution: { min: 12.4, max: 15.6 } }}
-          />
-
-          <ValueRow
-            label="Payload temperature"
-            value={45}
-            unit="°C"
-            status="critical"
-            staleAge="3 h"
-            range={{ min: -20, max: 60, safe: { min: 0, max: 40 }, caution: { min: 5, max: 35 } }}
-          />
-        </ValueCard>
-      </div>
-    </AppShell>
-  );
+    return (
+        <BrowserRouter>
+            <AppRoutes />
+        </BrowserRouter>
+    );
 }
 
 export default App;
