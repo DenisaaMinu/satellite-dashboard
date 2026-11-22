@@ -1,0 +1,129 @@
+/*
+  3 columns: y-axis | plot | labels on the right
+  3 rows:    unit   | plot | labels under the bars
+*/
+.chart {
+  margin: 0;
+  display: grid;
+  grid-template-columns: var(--chart-axis-width) 1fr var(--chart-side-width);
+  grid-template-rows: auto var(--chart-height) auto;
+  row-gap: var(--space-2);
+  font: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+.unit {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  padding-right: var(--space-3);
+}
+
+/* ---------- y-axis ---------- */
+
+.yAxis {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+}
+
+/* translateY(50%): the middle of the number sits on its line */
+.tick {
+  position: absolute;
+  right: var(--space-3);
+  transform: translateY(50%);
+}
+
+/* ---------- plot ---------- */
+
+.plot {
+  grid-column: 2;
+  grid-row: 2;
+  position: relative;
+  border-bottom: var(--border);
+}
+
+.safeBand {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background: var(--chart-safe-range);
+}
+
+.bars {
+  position: absolute;
+  inset: 0;
+  display: grid;
+}
+
+/* one column per bar: the value label sits right on top of the bar */
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.valueLabel {
+  color: var(--color-text);
+}
+
+.bar {
+  width: var(--chart-bar-width);
+}
+
+.latest { background: var(--chart-bar-latest); }
+.earlier { background: var(--chart-bar); }
+.partial { border: 1px dashed var(--chart-bar); }
+
+.referenceLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--color-text-muted);
+}
+
+.referenceLine.critical { border-top-color: var(--status-critical); }
+
+/* ---------- right side ---------- */
+
+.side {
+  grid-column: 3;
+  grid-row: 2;
+  position: relative;
+}
+
+.referenceLabel {
+  position: absolute;
+  left: var(--space-2);
+  transform: translateY(50%);
+  white-space: pre-line;   /* "\n" in the label becomes a new line */
+}
+
+.referenceLabel.critical { color: var(--status-critical); }
+
+/* ---------- x-axis ---------- */
+
+.xLabels {
+  grid-column: 2;
+  grid-row: 3;
+  display: grid;
+}
+
+.xLabel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sublabel {
+  font: var(--text-overline);
+  color: var(--color-text);
+}
+
+.xAxisLabel {
+  grid-column: 3;
+  grid-row: 3;
+  padding-left: var(--space-2);
+}

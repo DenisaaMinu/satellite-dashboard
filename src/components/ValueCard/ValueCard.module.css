@@ -11,11 +11,19 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: var(--space-3);
   padding-bottom: var(--space-2);
 }
 
 .title {
   margin: 0;
   font: var(--text-h4);
+}
+
+/* pushes itself to the left, next to the title */
+.subtitle {
+  margin-right: auto;
+  font: var(--text-small);
+  color: var(--color-text-muted);
 }

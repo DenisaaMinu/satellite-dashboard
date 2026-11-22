@@ -70,5 +70,7 @@ export interface Pass {
     framesExpected: number;
     /** dB above the ground station's minimum. Safe: at least +3 dB. */
     signalStrengthDb: number;
+    /** kbps, average during the pass */
+    downlinkRateKbps: number;
     result: PassResult;
 }

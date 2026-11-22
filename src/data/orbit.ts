@@ -1,7 +1,8 @@
 // Mock data for the Orbit tab. Example data, not real satellite values.
 // Position is the last known one (at the last contact), not an estimate.
 import type { OrbitTelemetry } from "../types/tabs";
-import { lastPass } from "./time";
+import { groundTrackUntil } from "./orbitModel";
+import { demoTime, lastPass } from "./time";
 
 export const orbitMock: OrbitTelemetry = {
     altitude: {
@@ -35,4 +36,23 @@ export const orbitMock: OrbitTelemetry = {
         // Appendix 5: about 7.6 km/s, calculated from the altitude. No limits.
         ...lastPass,
     },
+    sunlight: {
+        label: "Sunlight or shadow",
+        value: "sunlight",
+        status: "normal",
+        ...lastPass,
+    },
+    nextSunlightChange: demoTime("2026-11-24T12:35:00Z"),
+    orbitPeriod: {
+        label: "Orbit period",
+        value: 95,
+        unit: "min",
+        status: "normal",
+        ...lastPass,
+    },
+    altitudeLastOrbit: { lowest: 545, highest: 552 },
+    orbitalVelocityLastOrbit: { lowest: 7.58, highest: 7.6 },
+    // The track ends above Delft at the last pass (minute 0 of the orbit model)
+    groundTrack: groundTrackUntil(0),
 };
+

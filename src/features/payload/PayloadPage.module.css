@@ -1,0 +1,4 @@
+/* old value: grey, so it doesn't look like a live measurement */
+.stale {
+  color: var(--status-off);
+}

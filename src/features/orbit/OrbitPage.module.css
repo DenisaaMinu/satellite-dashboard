@@ -1,0 +1,24 @@
+/* map on the left, "Last known position" on the right */
+.mapLayout {
+  display: grid;
+  grid-template-columns: 1fr var(--map-side-width);
+  gap: var(--space-5);
+}
+
+.position {
+  display: flex;
+  flex-direction: column;
+}
+
+.overline {
+  margin: 0;
+  font: var(--text-overline);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.positionTime {
+  margin: var(--space-1) 0 var(--space-3);
+  font: var(--text-small);
+  color: var(--color-text);
+}

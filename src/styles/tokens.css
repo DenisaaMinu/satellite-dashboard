@@ -29,6 +29,18 @@
   --range-track: #2e3038;
   --range-safe-band: #7a7d8a;
   --range-near-limit: #565966;
+  --chart-bar: #8b8c99;                 /* earlier passes (picked from the Figma screenshot, check in Figma) */
+  --chart-bar-latest: var(--color-text);
+  --chart-line: var(--color-text);
+
+  /* Chart sizes */
+  --chart-height: 250px;          /* plot area, without the axis labels */
+  --chart-axis-width: 48px;       /* y-axis numbers on the left */
+  --chart-side-width: 104px;      /* line labels on the right, e.g. "Safe minimum" */
+  --chart-bar-width: 40px;
+  --chart-dot-size: 8px;
+  --map-height: 320px;            /* ground track map on the Orbit tab */
+  --map-side-width: 224px;        /* "Last known position" next to the map */
 
   /* Range bar sizes (from the Figma Range bar component) */
   --range-bar-height: 6px;

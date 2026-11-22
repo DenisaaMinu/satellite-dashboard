@@ -1,0 +1,30 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-panel);
+  border: var(--border);
+}
+
+/* only for screen readers: the table's title, not visible */
+.caption {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.th,
+.td {
+  padding: var(--space-3);
+  border-bottom: var(--border);
+  text-align: left;
+  vertical-align: middle;
+  font: var(--text-small);
+  color: var(--color-text);
+}
+
+.strong {
+  font-weight: 600;
+}

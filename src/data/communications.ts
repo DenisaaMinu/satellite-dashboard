@@ -1,7 +1,7 @@
 // Mock data for the Communications tab. Example data, not real satellite values.
 // Values match the Figma design (Communications tab).
 import type { CommunicationsTelemetry } from "../types/tabs";
-import { lastPass } from "./time";
+import { demoTime, lastPass } from "./time";
 
 export const communicationsMock: CommunicationsTelemetry = {
     groundStationContact: {
@@ -37,7 +37,7 @@ export const communicationsMock: CommunicationsTelemetry = {
     },
     lastContact: {
         label: "Last contact",
-        value: "2026-11-24T12:04:00Z",
+        value: demoTime("2026-11-24T12:04:00Z"),
         status: "normal",
         ...lastPass,
     },

@@ -9,8 +9,10 @@ import type {
     CommunicationsTelemetry,
     OrbitTelemetry,
     OverviewTelemetry,
+    PassSchedule,
     PayloadTelemetry,
     PowerTelemetry,
+    StoragePoint,
     ThermalTelemetry,
 } from "../types/tabs";
 import { overviewMock } from "../data/overview";
@@ -18,9 +20,10 @@ import { powerMock } from "../data/power";
 import { thermalMock } from "../data/thermal";
 import { attitudeMock } from "../data/attitude";
 import { communicationsMock } from "../data/communications";
-import { payloadMock } from "../data/payload";
+import { payloadMock, storageHistoryMock } from "../data/payload";
 import { orbitMock } from "../data/orbit";
 import { passesMock } from "../data/passHistory";
+import { scheduleMock } from "../data/schedule";
 
 export async function getOverview(): Promise<OverviewTelemetry> {
     return overviewMock;
@@ -53,4 +56,14 @@ export async function getOrbit(): Promise<OrbitTelemetry> {
 /** Newest pass first */
 export async function getPasses(): Promise<Pass[]> {
     return passesMock;
+}
+
+/** Storage used over the last 3 orbits, oldest first */
+export async function getStorageHistory(): Promise<StoragePoint[]> {
+    return storageHistoryMock;
+}
+
+/** The next pass over the ground station */
+export async function getPassSchedule(): Promise<PassSchedule> {
+    return scheduleMock;
 }

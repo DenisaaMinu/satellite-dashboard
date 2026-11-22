@@ -9,6 +9,7 @@ import type {
     OnOff,
     OscsState,
     RadioState,
+    SunlightState,
     TelemetryValue,
 } from "./telemetry";
 
@@ -36,17 +37,46 @@ export interface CommunicationsTelemetry {
     sBandRadio: TelemetryValue<RadioState>;
 }
 
+/** Lowest and highest value in a period, e.g. the last orbit */
+export interface MinMax {
+    lowest: number;
+    highest: number;
+}
+
 export interface PayloadTelemetry {
     /** % of on-board storage */
     storageUsed: TelemetryValue;
     /** A. Safe range still to confirm with the camera team. */
     payloadCurrent: TelemetryValue;
+    /** °C. Also shown on Denisa's Thermal tab. Safe range still to confirm with the camera team. */
+    payloadTemperature: TelemetryValue;
     /** Camera (VIMMI) on or off */
     camera: TelemetryValue<OnOff>;
     /** Photos taken by the camera */
     photosTaken: TelemetryValue;
     /** Optical communication (OSCS) */
     oscs: TelemetryValue<OscsState>;
+    /** ° between the camera and the Sun. Also shown on Denisa's Overview. */
+    cameraToSun: TelemetryValue;
+    /** Payload current during the last orbit */
+    payloadCurrentLastOrbit: MinMax;
+    /** Photos taken during the last orbit */
+    photosLastOrbit: number;
+}
+
+/** One point of the "Storage used over time" chart */
+export interface StoragePoint {
+    time: IsoTime;
+    /** % of on-board storage */
+    percent: number;
+}
+
+/** One point of the ground track (where the satellite was above the Earth) */
+export interface GroundTrackPoint {
+    /** ° (+ = north) */
+    lat: number;
+    /** ° (+ = east), -180 to 180 */
+    lon: number;
 }
 
 export interface OrbitTelemetry {
@@ -58,4 +88,20 @@ export interface OrbitTelemetry {
     longitude: TelemetryValue;
     /** km/s */
     orbitalVelocity: TelemetryValue;
+    sunlight: TelemetryValue<SunlightState>;
+    /** When the satellite goes from sunlight to shadow (or back) */
+    nextSunlightChange: IsoTime;
+    /** min */
+    orbitPeriod: TelemetryValue;
+    altitudeLastOrbit: MinMax;
+    orbitalVelocityLastOrbit: MinMax;
+    /** Last orbit, oldest point first. The last point is the last known position. */
+    groundTrack: GroundTrackPoint[];
+}
+
+/** When the satellite comes over the ground station next */
+export interface PassSchedule {
+    /** e.g. "Delft" */
+    groundStation: string;
+    nextPassStart: IsoTime;
 }
