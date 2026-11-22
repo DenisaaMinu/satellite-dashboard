@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { getOrbit, getPassSchedule } from "../../api/telemetry";
 import { useApi } from "../../api/useApi";
 import { useNow } from "../../api/useNow";
@@ -15,7 +16,9 @@ import {
     formatUtcTime,
     sunlightLabels,
 } from "../../utils/format";
+import { Globe3D } from "./Globe3D";
 import { GroundTrackMap } from "./GroundTrackMap";
+import { ViewSwitch, type MapView } from "./ViewSwitch";
 
 import styles from "./OrbitPage.module.css";
 
@@ -23,6 +26,7 @@ export function OrbitPage() {
     const orbit = useApi(getOrbit);
     const schedule = useApi(getPassSchedule);
     const now = useNow(); // live, re-renders every second
+    const [view, setView] = useState<MapView>("3d"); // 3D globe by default
     if (!orbit || !schedule) return null; // still loading
 
     const { altitude, latitude, longitude, orbitalVelocity, sunlight, orbitPeriod } = orbit;
@@ -84,13 +88,22 @@ export function OrbitPage() {
             ]}
             footnote="Position is shown from the last contact, not estimated. Latitude, longitude and sunlight have no safe range, so they show no status."
         >
-            <ValueCard title="Ground track" subtitle={`Last orbit (about ${orbitPeriod.value} min) · map type to confirm`}>
+            <ValueCard
+                title="Ground track"
+                subtitle={`Last orbit (about ${orbitPeriod.value} min)`}
+                action={<ViewSwitch value={view} onChange={setView} />}
+            >
                 <div className={styles.mapLayout}>
                     <div>
-                        <GroundTrackMap track={orbit.groundTrack} />
+                        {view === "3d" ? (
+                            <Globe3D track={orbit.groundTrack} altitudeKm={altitude.value ?? 0} />
+                        ) : (
+                            <GroundTrackMap track={orbit.groundTrack} />
+                        )}
                         <ChartLegend
                             items={[
-                                { swatch: "line", label: "Ground track, last orbit" },
+                                // 3D shows the orbit at its real height, 2D the track on the ground
+                                { swatch: "line", label: view === "3d" ? "Orbit, last orbit" : "Ground track, last orbit" },
                                 { swatch: "dot", label: "Satellite at last contact" },
                             ]}
                         />
