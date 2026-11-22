@@ -8,11 +8,14 @@
   padding: var(--space-4) var(--space-3);
 }
 
+/* the tabs are links now (NavLink renders an <a>), so: block + no underline */
 .tab {
+  display: block;
   width: 100%;
   border: none;
   background: none;
   text-align: left;
+  text-decoration: none;
   cursor: pointer;
 
   font: var(--text-body);

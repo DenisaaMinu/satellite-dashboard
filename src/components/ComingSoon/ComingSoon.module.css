@@ -1,0 +1,5 @@
+.text {
+  margin: var(--space-4) 0 0;
+  font: var(--text-body);
+  color: var(--color-text-muted);
+}
