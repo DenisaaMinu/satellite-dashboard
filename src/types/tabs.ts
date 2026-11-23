@@ -13,13 +13,19 @@ import type {
     TelemetryValue,
 } from "./telemetry";
 
-// ---------- Denisa: fill these in for your tabs ----------
-// Placeholders so the API and the data files already exist.
-// Replace with a real interface (like CommunicationsTelemetry below) when you build the tab.
+// ---------- Denisa ----------
 
 export type OverviewTelemetry = Record<string, TelemetryValue<number | string>>;
 export type PowerTelemetry = Record<string, TelemetryValue<number | string>>;
-export type ThermalTelemetry = Record<string, TelemetryValue<number | string>>;
+
+export interface ThermalTelemetry {
+    battery1Temperature: TelemetryValue;
+    battery2Temperature: TelemetryValue;
+    flightComputerTemperature: TelemetryValue;
+    /** 6 panels, one per side of the satellite (+X, −X, +Y, −Y, +Z, −Z) */
+    solarPanelTemperatures: TelemetryValue[];
+}
+
 export type AttitudeTelemetry = Record<string, TelemetryValue<number | string>>;
 
 // ---------- Petros ----------

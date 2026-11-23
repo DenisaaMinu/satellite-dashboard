@@ -13,9 +13,10 @@ interface ValueRowProps {
     status?: ProblemStatus;
     range?: Limits & { safe: Limits; caution: Limits };
     staleAge?: string;
+    displayValue?: string;
 }
 
-export function ValueRow({ label, value, unit, status, pill, staleAge, range }: ValueRowProps) {
+export function ValueRow({ label, value, unit, status, pill, staleAge, range, displayValue }: ValueRowProps) {
     const classNames = [styles.value, status && styles[status], staleAge && styles.stale]
         .filter(Boolean)
         .join(' ');
@@ -29,7 +30,7 @@ export function ValueRow({ label, value, unit, status, pill, staleAge, range }: 
                 ) : (
                     <>
                         {status ? <StatusBadge status={status} iconOnly /> : null}
-                        <span className={classNames}>{value}</span>
+                        <span className={classNames}>{displayValue ?? value}</span>
                         {unit && <span className={styles.unit}>{unit}</span>}
                     </>
                 )}
