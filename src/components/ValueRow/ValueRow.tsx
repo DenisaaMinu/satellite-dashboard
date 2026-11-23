@@ -14,10 +14,12 @@ interface ValueRowProps {
     range?: Limits & { safe: Limits; caution: Limits };
     staleAge?: string;
     displayValue?: string;
+    /** The value is a short sentence (like "Off · 12 photos"), shown smaller than a measured number */
+    textValue?: boolean;
 }
 
-export function ValueRow({ label, value, unit, status, pill, staleAge, range, displayValue }: ValueRowProps) {
-    const classNames = [styles.value, status && styles[status], staleAge && styles.stale]
+export function ValueRow({ label, value, unit, status, pill, staleAge, range, displayValue, textValue }: ValueRowProps) {
+    const classNames = [styles.value, textValue && styles.textValue, status && styles[status], staleAge && styles.stale]
         .filter(Boolean)
         .join(' ');
 
@@ -26,7 +28,7 @@ export function ValueRow({ label, value, unit, status, pill, staleAge, range, di
             <div className={styles.top}>
                 <span className={styles.label}>{label}</span>
                 {pill ? (
-                    <StatusBadge status={pill} />
+                    <StatusBadge status={pill} label={displayValue} />
                 ) : (
                     <>
                         {status ? <StatusBadge status={status} iconOnly /> : null}
@@ -37,7 +39,7 @@ export function ValueRow({ label, value, unit, status, pill, staleAge, range, di
             </div>
             {range && typeof value === 'number' && (
                 <div className={styles.rangeRow}>
-                    <RangeBar value={value} min={range.min} max={range.max} safe={range.safe} caution={range.caution} stale={Boolean(staleAge)} />
+                    <RangeBar value={value} min={range.min} max={range.max} safe={range.safe} caution={range.caution} stale={Boolean(staleAge)} status={status} />
                 </div>
             )}
             {staleAge && (

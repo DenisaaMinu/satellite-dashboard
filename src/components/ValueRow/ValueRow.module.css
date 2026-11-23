@@ -20,6 +20,11 @@
   color: var(--color-text);
 }
 
+/* a sentence instead of a number: smaller, so it doesn't look like a measurement */
+.textValue {
+  font: var(--text-body-strong);
+}
+
 .unit {
   font: var(--text-small);
   color: var(--color-text-muted);
