@@ -35,7 +35,18 @@ export interface ThermalTelemetry {
     solarPanelTemperatures: TelemetryValue[];
 }
 
-export type AttitudeTelemetry = Record<string, TelemetryValue<number | string>>;
+export interface AttitudeTelemetry {
+    /** °/s, how fast the satellite turns */
+    bodyRate: TelemetryValue;
+    /** °, how far it points away from where it should point */
+    pointingError: TelemetryValue;
+    /** rpm */
+    reactionWheelSpeed: TelemetryValue;
+    /** µT, the Earth's magnetic field on 3 axes */
+    magnetometerX: TelemetryValue;
+    magnetometerY: TelemetryValue;
+    magnetometerZ: TelemetryValue;
+}
 
 // ---------- Petros ----------
 
