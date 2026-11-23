@@ -54,6 +54,8 @@ export type ChargeState = 'charging' | 'draining';
 export type StarTrackerState = 'ok' | 'no-lock';
 /** Satellite modes are not final yet (Appendix 5: "other modes to confirm"). */
 export type SatelliteMode = 'nominal' | 'safe' | 'imaging';
+/** The de-orbit sail is folded in until the end of the mission */
+export type SailState = 'stowed' | 'deployed';
 
 // ---------- Ground station passes ----------
 

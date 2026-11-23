@@ -9,13 +9,22 @@ import type {
     OnOff,
     OscsState,
     RadioState,
+    SailState,
+    SatelliteMode,
     SunlightState,
     TelemetryValue,
 } from "./telemetry";
 
 // ---------- Denisa ----------
 
-export type OverviewTelemetry = Record<string, TelemetryValue<number | string>>;
+/**
+ * Only the Overview's own values. The cards and the other tiles reuse
+ * the other tabs' data (camera to Sun from payload, sunlight from orbit).
+ */
+export interface OverviewTelemetry {
+    satelliteMode: TelemetryValue<SatelliteMode>;
+    deorbitSail: TelemetryValue<SailState>;
+}
 export type PowerTelemetry = Record<string, TelemetryValue<number | string>>;
 
 export interface ThermalTelemetry {

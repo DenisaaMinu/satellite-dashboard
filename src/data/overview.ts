@@ -1,9 +1,20 @@
-// Mock data for the Overview tab (Denisa). Example data, not real satellite values.
-// The six health cards can reuse the other tabs' data through the api functions.
-// TODO Denisa: the "Status" card group from Appendix 5 goes here:
-//   Must: satellite mode, overall health, camera-to-Sun warning (°), de-orbit sail deployed,
-//         last data received
-//   Should: next pass over the ground station, sunlight or shadow
+// Mock data for the Overview tab. Example data, not real satellite values.
+// Only the Overview's own values: the cards and the other tiles reuse the other tabs' data.
 import type { OverviewTelemetry } from "../types/tabs";
+import { lastPass } from "./time";
 
-export const overviewMock: OverviewTelemetry = {};
+export const overviewMock: OverviewTelemetry = {
+    satelliteMode: {
+        label: "Satellite mode",
+        value: "nominal",
+        // TODO: the list of modes is not final yet (Appendix 5: "other modes to confirm")
+        status: "normal",
+        ...lastPass,
+    },
+    deorbitSail: {
+        label: "De-orbit sail",
+        value: "stowed",
+        status: "normal", // stowed is normal during the mission
+        ...lastPass,
+    },
+};

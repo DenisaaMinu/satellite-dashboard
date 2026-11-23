@@ -1,11 +1,11 @@
-import { getPayload, getPower, getThermal } from "../../api/telemetry";
+import { getOverview, getPayload, getPower, getThermal, getOrbit } from "../../api/telemetry";
 import { useApi } from "../../api/useApi";
 import { useNow } from "../../api/useNow";
 import { TabPage } from "../../components/TabPage/TabPage";
 import { ValueCard } from "../../components/ValueCard/ValueCard";
 import { ValueRow } from "../../components/ValueRow/ValueRow";
 import type { TelemetryValue } from "../../types/telemetry";
-import { formatShortAge, isStale } from "../../utils/format";
+import { formatShortAge, formatTimeUntil, isStale, sailLabels, sunlightLabels } from "../../utils/format";
 import { toProblemStatus, worstStatus } from "../../utils/status";
 
 import styles from "./OverviewPage.module.css";
@@ -66,13 +66,19 @@ function TelemetryRow({ item }: TelemetryRowProps) {
 }
 
 export function OverviewPage() {
+    const overview = useApi(getOverview);
     const power = useApi(getPower);
     const thermal = useApi(getThermal);
     const payload = useApi(getPayload);
+    const orbit = useApi(getOrbit);
+    const now = useNow(); // live, re-renders every second
 
-    if (!power) return null; // still loading
-    if (!thermal) return null; // still loading
-    if (!payload) return null; // still loading
+    if (!overview || !power || !thermal || !payload || !orbit) return null; // still loading
+
+    const sail = overview.deorbitSail;
+    const sunlight = orbit.sunlight;
+    // "shadow in 23 min" when in sunlight, "sunlight in 23 min" when in shadow
+    const nextChange = sunlight.value === "sunlight" ? "shadow" : "sunlight";
 
     // One entry per card, values in the same order as Figma
     const cards = [
@@ -99,8 +105,29 @@ export function OverviewPage() {
         // TODO: Attitude control, Communications, Payload, Orbit
     ];
 
+    const tiles = [
+        {
+            label: payload.cameraToSun.label,
+            // TODO: warning text ("not pointing at the Sun"), angle limit to confirm
+            value: `${payload.cameraToSun.value}°`,
+            status: payload.cameraToSun.status,
+        },
+        {
+            label: sail.label,
+            value: sail.value ? sailLabels[sail.value] : "No data",
+            status: sail.status,
+        },
+        {
+            label: "Sunlight",
+            value: sunlight.value
+                ? `${sunlightLabels[sunlight.value]} · ${nextChange} in ${formatTimeUntil(orbit.nextSunlightChange, now)}`
+                : "No data",
+            status: sunlight.status,
+        },
+    ];
+
     return (
-        <TabPage title="Overview">
+        <TabPage title="Overview" tiles={tiles}>
             <div className={styles.cards}>
                 {cards.map((card) => (
                     <ValueCard key={card.title} title={card.title} status={worstStatus(card.values)}>

@@ -8,6 +8,8 @@ import type {
     OscsState,
     PassResult,
     RadioState,
+    SailState,
+    SatelliteMode,
     SunlightState,
 } from "../types/telemetry";
 
@@ -114,6 +116,18 @@ export const onOffLabels: Record<OnOff, string> = {
 export const sunlightLabels: Record<SunlightState, string> = {
     sunlight: "In sunlight",
     shadow: "In shadow",
+};
+
+export const sailLabels: Record<SailState, string> = {
+    stowed: "Stowed",
+    deployed: "Deployed",
+};
+
+// Figma shows "Normal" for the nominal mode
+export const modeLabels: Record<SatelliteMode, string> = {
+    nominal: "Normal",
+    safe: "Safe mode",
+    imaging: "Imaging",
 };
 
 export const passResultLabels: Record<PassResult, string> = {
