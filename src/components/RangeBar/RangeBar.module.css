@@ -13,6 +13,12 @@
   background: var(--color-text);
 }
 
+/* problem: the marker takes the status colour */
+.caution { background: var(--status-caution); }
+.serious { background: var(--status-serious); }
+.critical { background: var(--status-critical); }
+
+/* after the status colours on purpose: old data is always grey, even when it was a problem */
 .markerStale {
   background: var(--color-text-muted);
 }

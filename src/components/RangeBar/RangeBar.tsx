@@ -1,5 +1,5 @@
 import styles from "./RangeBar.module.css";
-import type { Limits } from "../../types/telemetry";
+import type { Limits, ProblemStatus } from "../../types/telemetry";
 
 interface RangeBarProps {
     value: number;
@@ -8,9 +8,11 @@ interface RangeBarProps {
     safe: Limits;
     caution: Limits;
     stale?: boolean;
+    /** Marker in the status colour. Not colour only: the value above it has the status icon. */
+    status?: ProblemStatus;
 }
 
-export function RangeBar({ value, min, max, safe, caution, stale }: RangeBarProps) {
+export function RangeBar({ value, min, max, safe, caution, stale, status }: RangeBarProps) {
     function toPercent(v: number) {
         return (v - min) / (max - min) * 100;
     }
@@ -31,7 +33,7 @@ export function RangeBar({ value, min, max, safe, caution, stale }: RangeBarProp
     const highRight = toPercent(safe.max);
 
     // old data: grey marker, so it doesn't look like a live position
-    const markerClassNames = [styles.marker, stale && styles.markerStale]
+    const markerClassNames = [styles.marker, status && styles[status], stale && styles.markerStale]
         .filter(Boolean)
         .join(' ');
 
